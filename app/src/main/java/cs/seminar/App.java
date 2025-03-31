@@ -12,7 +12,16 @@ public class App {
         return "Hello, " + name + "!";
     }
 
+    public String getAge() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        age += 100;
+        return "Hello, you will be this old " + age + " after a 100 years";
+    }
+
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        System.out.println(new App().getAge());
     }
 }
