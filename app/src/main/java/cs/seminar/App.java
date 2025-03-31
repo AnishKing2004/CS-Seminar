@@ -5,47 +5,42 @@
 import java.util.Scanner;
 
 public class App {
+    private final Scanner scanner;
+
+    public App() {
+        this.scanner = new Scanner(System.in);
+    }
+
     public String getGreeting() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your name: ");
         String name = scanner.nextLine();
         return "Hello, " + name + "!";
     }
 
     public String getAge() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your age: ");
         int age = scanner.nextInt();
-        age += 100;
-        return "Hello, you will be this old " + age + " after a 100 years";
+        return "Hello, you will be this old " + (age + 100) + " after a 100 years";
     }
 
     public String magicNumber() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a number: ");
         int number = scanner.nextInt();
-        int magic = number * 6 / 2 + 7 - 3 * 2 + 1;
-        if (magic < 0) {
-            magic = -magic;
-        }
-        if (magic > 100) {
-            magic = 100;
-        }
-        if (magic < 10) {
-            magic = 10;
-        }
-        if (magic == 42) {
-            magic = 0;
-        }
-        if (magic == 0) {
-            magic = 42;
-        } 
+        int magic = calculateMagicNumber(number);
         return "Your magic number is: " + magic;
     }
 
+    private int calculateMagicNumber(int number) {
+        int magic = number * 6 / 2 + 7 - 3 * 2 + 1;
+        magic = Math.abs(magic);
+        magic = Math.min(100, Math.max(10, magic));
+        return magic == 42 ? 0 : (magic == 0 ? 42 : magic);
+    }
+
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-        System.out.println(new App().getAge());
-        System.out.println(new App().magicNumber());
+        App app = new App();
+        System.out.println(app.getGreeting());
+        System.out.println(app.getAge());
+        System.out.println(app.magicNumber());
     }
 }
