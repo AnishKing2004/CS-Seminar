@@ -20,8 +20,32 @@ public class App {
         return "Hello, you will be this old " + age + " after a 100 years";
     }
 
+    public String magicNumber() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        int magic = number * 6 / 2 + 7 - 3 * 2 + 1;
+        if (magic < 0) {
+            magic = -magic;
+        }
+        if (magic > 100) {
+            magic = 100;
+        }
+        if (magic < 10) {
+            magic = 10;
+        }
+        if (magic == 42) {
+            magic = 0;
+        }
+        if (magic == 0) {
+            magic = 42;
+        } 
+        return "Your magic number is: " + magic;
+    }
+
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
         System.out.println(new App().getAge());
+        System.out.println(new App().magicNumber());
     }
 }
